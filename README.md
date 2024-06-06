@@ -1,5 +1,8 @@
 # QGym: Scalable Simulation and Benchmarking of Queuing Network Controllers
 
+![Teaser Image](assets/teaser_even_larger_font.svg)
+
+
 ## Overview
 QGym is an open-source simulation framework designed to benchmark queuing policies across diverse and realistic problem instances. The framework supports a wide range of environments including parallel servers, criss-cross, tandem, and re-entrant networks. It provides a platform for comparing both model-free RL methods and classical queuing policies.
 
