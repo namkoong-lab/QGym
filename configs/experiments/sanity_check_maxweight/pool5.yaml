@@ -1,0 +1,5 @@
+env: 'n_model_pool_sanitycheck_changelam_pool5.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'fixed_arrival_rate_cmuq.py'
+experiment_name: 'n_model_pool_sanitycheck_pool5_cmuq'
+

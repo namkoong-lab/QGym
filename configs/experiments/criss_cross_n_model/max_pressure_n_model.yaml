@@ -1,0 +1,5 @@
+env: 'n_model.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'fixed_arrival_rate_max_pressure.py'
+experiment_name: 'new_n_model_max_pressure'
+

@@ -1,0 +1,4 @@
+env: 'reentrant_8.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'fixed_arrival_rate_fluid.py'
+experiment_name: 'reentrant_8_fluid'

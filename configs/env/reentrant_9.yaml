@@ -1,0 +1,11 @@
+name: 'reentrant_9'
+lam_type: 'constant'
+lam_params: {val: null}
+network: null
+mu: null
+h: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+init_queues: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+queue_event_options: 'custom'
+train_T: 30000
+test_T: 300000
+num_pool: 1

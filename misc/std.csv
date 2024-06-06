@@ -1,0 +1,37 @@
+
+Network,cμ,MW,MP,FP,PPO,PPO BC,PPO softmax
+Criss Cross BH,0,0,0,0,4.67,0.24,0.22
+Reentrant 2,0,0,0,0,6.56,0.56,0.43
+Reentrant 3,0,0,0,0,21.62,0.54,0.36
+Reentrant 4,0,0,0,0,41.73,5.16,0.36
+Reentrant 5,0,0,0,0,84.44,3.11,0.42
+Reentrant 6,0,0,0,0,315.25,9.71,0.48
+Reentrant 7,0,0,0,0,208.12,8.74,8.24
+Reentrant 8,0,0,0,0,315.25,6.01,6.24
+Reentrant 9,0,0,0.01,0,2219.72,10.05,0.74
+Reentrant 10,0,0,0,0,852.84,10.37,0.72
+Re-Reentrant 2,0,0,0,0,41.13,0.37,0.22
+Re-Reentrant 3,0,0,0,0,37.23,0.56,0.29
+Re-Reentrant 4,0,0,0,0,52.30,1.06,0.47
+Re-Reentrant 5,0,0,0,0,63.54,1.37,0.52
+Re-Reentrant 6,0,0,0,0,349.64,8.74,0.47
+Re-Reentrant 7,0,0,0,0,116.92,6.68,0.57
+Re-Reentrant 8,0,0,0,0,208.70,7.82,0.70
+Re-Reentrant 9,0,0,0,0,491.49,9.34,0.86
+Re-Reentrant 10,0,0,0,0,355.34,89.20,0.79
+Reentrant Hyper 2,0,0,0,0,20.72,1.31,0.69
+Reentrant Hyper 3,0,0,0,0,58.04,13.83,0.85
+Reentrant Hyper 4,0,0,0,0,53.05,5.11,1.20
+Reentrant Hyper 5,0,0,0,0,153.49,19.91,1.12
+Reentrant Hyper 6,0,0,0,0,336.43,15.15,1.45
+Reentrant Hyper 7,0,0,0,0,325.90,16.64,1.98
+Re-Reentrant Hyper 2,0.0003,0.0007,0.0007,0,59.58,1.11,0.83
+Re-Reentrant Hyper 3,0.0007,0,0,0,132.63,17.98,0.84
+Re-Reentrant Hyper 4,0.0007,0.0007,0.0013,0,62.07,3.17,1.30
+Re-Reentrant Hyper 5,0.0007,0,0.0013,0,84.23,10.81,1.73
+Re-Reentrant Hyper 6,0,0.0013,0,0,362.68,20.21,1.26
+Re-Reentrant Hyper 7,0.0013,0.0013,0.0026,0,214.22,15.54,1.63
+N Model,0,0,0,0,28.51,1.95,1.76
+N Model 5 x 5 Time-varying,0,0,0,0,15.29,0.14,0.22
+Input Switch,0,0,0,0,8.85,0.05,0.03
+Hospital,0,0,0,0,6.56,7.01,7.38

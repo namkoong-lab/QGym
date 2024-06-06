@@ -1,0 +1,5 @@
+env: 'input_switch.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'fixed_arrival_rate_max_pressure.py'
+experiment_name: 'input_switch_max_pressure'
+

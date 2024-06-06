@@ -1,0 +1,4 @@
+env: 'n_model_pool_sanitycheck_pool1.yaml'
+model: 'ppg.yaml'
+script: 'fixed_arrival_rate_directbackprop.py'
+experiment_name: 'n_model_pool_sanitycheck_pool1'

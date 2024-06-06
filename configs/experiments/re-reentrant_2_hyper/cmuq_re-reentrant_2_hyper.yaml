@@ -1,0 +1,4 @@
+env: 're-reentrant_2_hyper.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'fixed_arrival_rate_cmuq.py'
+experiment_name: 're-reentrant_2_hyper_cmuq'

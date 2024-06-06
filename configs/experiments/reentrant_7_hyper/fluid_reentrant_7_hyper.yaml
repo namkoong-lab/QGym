@@ -1,0 +1,4 @@
+env: 'reentrant_7_hyper.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'fixed_arrival_rate_fluid.py'
+experiment_name: 'reentrant_7_hyper_fluid'

@@ -1,0 +1,18 @@
+name: 'criss_cross_bh'
+lam_type: 'constant'
+lam_params: {val: [0.9, .000001, 0.9]}
+network: [[1,0,1],[0,1,0]]
+mu: [[2,0,2],[0,1,0]]
+h: [1,1,1]
+init_queues: [0, 0, 0]
+queue_event_options: [[1., 0, 0.],
+                      [0., 0., 0.],
+                      [0., 0, 1.],
+                      [-1., 1., 0.],
+                      [0., -1., 0.],
+                      [0., 0., -1.],]
+train_T: 20000
+test_T: 50000
+num_pool: 1
+
+  

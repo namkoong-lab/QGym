@@ -1,0 +1,4 @@
+env: 're-reentrant_2.yaml'
+model: 'ppg_linearassignment_singlebatch.yaml'
+script: 'fixed_arrival_rate_cmuq.py'
+experiment_name: 're-reentrant_2_cmuq'

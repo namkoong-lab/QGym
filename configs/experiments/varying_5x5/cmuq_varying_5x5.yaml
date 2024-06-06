@@ -1,0 +1,5 @@
+env: 'n_model_5x5.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'varying_arrival_rate_cmuq.py'
+experiment_name: 'varying_5x5_cmuq'
+

@@ -1,0 +1,37 @@
+name: 'ppg'
+env:
+  device: 'cpu'
+  env_temp: 1
+  straight_through_min: True
+  model_seed: 100
+  test_seed: 42
+  train_seed: 42
+  print_grads: True
+  test_restart: True
+  test_freq: 25
+  train_restart: False
+param:
+  layers: 3
+  width: 256
+  f_time: False 
+opt:
+  num_epochs: 200
+  train_batch: 1
+  test_batch: 1
+  lr: 0.0001
+  betas: [0.8, 0.9]
+  grad_clip_norm: 1.0
+policy:
+  test_policy: 'sinkhorn'
+  randomize: True
+  train_policy: 'sinkhorn'
+  sinkhorn:
+    num_iter: 50
+    temp: 0.01
+    eps: 0.0001
+    back_temp: 0.1
+plot:
+  plot_policy_curve: True
+  inds: [0,1]
+  val_inds: [0, 0]
+checkpoint: null

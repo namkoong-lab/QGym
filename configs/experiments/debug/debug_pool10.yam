@@ -1,0 +1,5 @@
+env: 'debug.yaml'
+model: 'ppg.yaml'
+script: 'fixed_arrival_rate_directbackprop.py'
+experiment_name: 'debug'
+

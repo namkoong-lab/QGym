@@ -1,0 +1,5 @@
+env: 'n_model_5x5.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'varying_arrival_rate_max_pressure.py'
+experiment_name: 'n_model_5x5_varying_max_pressure'
+

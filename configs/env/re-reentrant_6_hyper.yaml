@@ -1,0 +1,15 @@
+name: 're-reentrant_6_hyper'
+env_type: 're-reentrant_6'
+service_type: 'hyper'
+lam_type: 'hyper'
+lam_params: {val: null, scale: 0.8}
+network: null
+mu: null
+h: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+init_queues: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+queue_event_options: 'custom'
+train_T: 50000
+test_T: 200000
+num_pool: 1
+
+  

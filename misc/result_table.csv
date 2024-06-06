@@ -1,0 +1,66 @@
+name,cmu,cmuq,fluid,max_pressure
+reentrant_2,$18.983 \pm 0.0000$,$14.806 \pm 0.0000$,$1016.145 \pm 0.0000$,$4997.773 \pm 0.0000$
+reentrant_3,$21.610 \pm 0.0000$,$24.829 \pm 0.0000$,$8096.796 \pm 0.0003$,$24981.002 \pm 0.0007$
+reentrant_4,$30.154 \pm 0.0000$,$32.085 \pm 0.0000$,$4322.832 \pm 0.0000$,$40034.914 \pm 0.0013$
+reentrant_5,$51.271 \pm 0.0000$,$50.011 \pm 0.0000$,$9766.810 \pm 0.0003$,$50007.988 \pm 0.0013$
+reentrant_6,$54.733 \pm 0.0000$,$49.236 \pm 0.0000$,$7659.054 \pm 0.0003$,$100066.758 \pm 0.0000$
+reentrant_7,$56.362 \pm 0.0000$,$54.410 \pm 0.0000$,$7032.952 \pm 0.0002$,$49987.863 \pm 0.0013$
+reentrant_8,$59.406 \pm 0.0000$,$67.989 \pm 0.0000$,NA,$149930.359 \pm 0.0000$
+reentrant_9,$72.702 \pm 0.0000$,$64.409 \pm 0.0000$,NA,$149917.344 \pm 0.0052$
+reentrant_10,$87.694 \pm 0.0000$,$80.079 \pm 0.0000$,NA,$200175.984 \pm 0.0000$
+reentrant_2_hyper,$17509.920 \pm 0.0000$,$17534.451 \pm 0.0007$,$17509.924 \pm 0.0007$,$25116.502 \pm 0.0000$
+reentrant_3_hyper,$25438.318 \pm 0.0007$,$25518.105 \pm 0.0007$,$33279.316 \pm 0.0000$,$40043.434 \pm 0.0000$
+reentrant_4_hyper,$23739.002 \pm 0.0000$,$23643.686 \pm 0.0007$,$26797.215 \pm 0.0007$,$40084.598 \pm 0.0000$
+reentrant_5_hyper,$40686.973 \pm 0.0000$,$40619.723 \pm 0.0013$,$50680.660 \pm 0.0013$,$75002.805 \pm 0.0026$
+reentrant_6_hyper,$50156.590 \pm 0.0000$,$50724.277 \pm 0.0000$,$54122.867 \pm 0.0026$,$99851.703 \pm 0.0026$
+reentrant_7_hyper,$47052.680 \pm 0.0013$,$47283.258 \pm 0.0013$,$57492.336 \pm 0.0000$,$99849.492 \pm 0.0026$
+re-reentrant_2,$26.017 \pm 0.0000$,$17.453 \pm 0.0000$,NA,$24978.381 \pm 0.0007$
+re-reentrant_3,$26.265 \pm 0.0000$,$26.649 \pm 0.0000$,NA,$40036.789 \pm 0.0013$
+re-reentrant_4,$27.624 \pm 0.0000$,$34.100 \pm 0.0000$,NA,$39896.375 \pm 0.0000$
+re-reentrant_5,$44.815 \pm 0.0000$,$40.337 \pm 0.0000$,$9723.882 \pm 0.0003$,$49906.336 \pm 0.0013$
+re-reentrant_6,$54.478 \pm 0.0000$,$46.626 \pm 0.0000$,$16527.066 \pm 0.0007$,$100105.172 \pm 0.0026$
+re-reentrant_7,$70.252 \pm 0.0000$,$77.929 \pm 0.0000$,$13922.662 \pm 0.0003$,$99824.359 \pm 0.0026$
+re-reentrant_8,$70.321 \pm 0.0000$,$72.963 \pm 0.0000$,NA,$100121.242 \pm 0.0026$
+re-reentrant_9,$65.803 \pm 0.0000$,$77.340 \pm 0.0000$,NA,$100204.391 \pm 0.0026$
+re-reentrant_10,$81.347 \pm 0.0000$,$82.003 \pm 0.0000$,NA,$150144.781 \pm 0.0052$
+re-reentrant_2_hyper,$16372.080 \pm 0.0003$,$19980.764 \pm 0.0007$,$22178.230 \pm 0.0007$,$24980.799 \pm 0.0007$
+re-reentrant_3_hyper,$22714.295 \pm 0.0007$,$29063.512 \pm 0.0000$,$31947.646 \pm 0.0000$,$39871.941 \pm 0.0000$
+re-reentrant_4_hyper,$20305.496 \pm 0.0007$,$26673.074 \pm 0.0007$,$28968.387 \pm 0.0007$,$39957.512 \pm 0.0013$
+re-reentrant_5_hyper,$22590.559 \pm 0.0007$,$30608.566 \pm 0.0000$,$33035.277 \pm 0.0000$,$49888.223 \pm 0.0013$
+re-reentrant_6_hyper,$41585.285 \pm 0.0000$,$57717.414 \pm 0.0013$,$61650.430 \pm 0.0000$,$100176.133 \pm 0.0000$
+re-reentrant_7_hyper,$38127.773 \pm 0.0013$,$53847.023 \pm 0.0013$,$57098.258 \pm 0.0000$,$99861.484 \pm 0.0026$
+new-reentrant_2,NA,NA,$968.864 \pm 0.0000$,NA
+new-reentrant_3,NA,NA,$4574.978 \pm 0.0002$,NA
+new-reentrant_4,NA,NA,$4309.803 \pm 0.0002$,NA
+new-reentrant_5,NA,NA,$7111.737 \pm 0.0002$,NA
+new-reentrant_6,NA,NA,NA,NA
+new-reentrant_7,NA,NA,NA,NA
+new-reentrant_8,NA,NA,NA,NA
+new-reentrant_9,NA,NA,NA,NA
+new-reentrant_10,NA,NA,NA,NA
+new-reentrant_2_hyper,NA,NA,$17667.982 \pm 0.0000$,NA
+new-reentrant_3_hyper,NA,NA,$31020.566 \pm 0.0013$,NA
+new-reentrant_4_hyper,NA,NA,$23766.170 \pm 0.0007$,NA
+new-reentrant_5_hyper,NA,NA,NA,NA
+new-reentrant_6_hyper,NA,NA,NA,NA
+new-reentrant_7_hyper,NA,NA,NA,NA
+new-re-reentrant_2,NA,NA,$12113.095 \pm 0.0003$,NA
+new-re-reentrant_3,NA,NA,$11986.280 \pm 0.0000$,NA
+new-re-reentrant_4,NA,NA,$9509.071 \pm 0.0003$,NA
+new-re-reentrant_5,NA,NA,$884.291 \pm 0.0000$,NA
+new-re-reentrant_6,NA,NA,NA,NA
+new-re-reentrant_7,NA,NA,NA,NA
+new-re-reentrant_8,NA,NA,NA,NA
+new-re-reentrant_9,NA,NA,NA,NA
+new-re-reentrant_10,NA,NA,NA,NA
+new-re-reentrant_2_hyper,NA,NA,$21879.465 \pm 0.0007$,NA
+new-re-reentrant_3_hyper,NA,NA,$31441.598 \pm 0.0000$,NA
+new-re-reentrant_4_hyper,NA,NA,$28347.160 \pm 0.0007$,NA
+new-re-reentrant_5_hyper,NA,NA,$32288.168 \pm 0.0007$,NA
+new-re-reentrant_6_hyper,NA,NA,NA,NA
+new-re-reentrant_7_hyper,NA,NA,NA,NA
+hospital,$444.442 \pm 0.0000$,$444.170 \pm 0.0000$,$1515.253 \pm 0.0000$,$444.170 \pm 0.0000$
+input_switch,$5.301 \pm 0.0000$,$5.595 \pm 0.0000$,$4937.399 \pm 0.0002$,$4936.542 \pm 0.0002$
+new_criss_cross_bh,$16.159 \pm 0.0000$,NA,$29.317 \pm 0.0000$,$8367.642 \pm 0.0003$
+n_model_5x5_varying,$17.812 \pm 0.0000$,$15.192 \pm 0.0000$,$26.653 \pm 0.0000$,$15.192 \pm 0.0000$
+new_n_model,$171.172 \pm 0.0000$,$40.217 \pm 0.0000$,$798.663 \pm 0.0000$,$40.217 \pm 0.0000$

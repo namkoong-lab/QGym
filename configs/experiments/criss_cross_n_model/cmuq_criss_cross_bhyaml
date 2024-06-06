@@ -1,0 +1,5 @@
+env: 'criss_cross_bh.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'fixed_arrival_rate_cmuq.py'
+experiment_name: 'new_criss_cross_bh_cmuq'
+

@@ -1,0 +1,5 @@
+env: 're-reentrant_2.yaml'
+model: 'ppg.yaml'
+script: 'fixed_arrival_rate_directbackprop.py'
+experiment_name: 're-reentrant_2_ppg'
+

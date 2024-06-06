@@ -1,0 +1,14 @@
+name: 'reentrant_3'
+lam_type: 'constant'
+lam_params: {val: null}
+scale_factor: 10
+network: null
+mu: null
+h: [1,1,1,1,1,1,1,1,1]
+init_queues: [0,0,0,0,0,0,0,0,0]
+queue_event_options: 'custom'
+train_T: 20000
+test_T: 50000
+num_pool: 1
+
+  

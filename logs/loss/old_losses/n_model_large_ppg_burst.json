@@ -1,0 +1,1 @@
+[{"epoch": 0, "test_loss": 9199.1171875, "test_loss_std": 1.293866515159607}, {"epoch": 25, "test_loss": 7704.236328125, "test_loss_std": 4.3360419273376465}, {"epoch": 50, "test_loss": 7705.24755859375, "test_loss_std": 4.8018269538879395}, {"epoch": 75, "test_loss": 7638.43359375, "test_loss_std": 4.044007301330566}]

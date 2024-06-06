@@ -1,0 +1,4 @@
+env: 'reentrant_5.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'fixed_arrival_rate_max_pressure.py'
+experiment_name: 'reentrant_5_max_pressure'
