@@ -173,4 +173,4 @@ We show current benchmarking results below
 | Network       | $c\mu$               | MW                   | MP                   | FP                   | PPO                      | PPO BC                 | PPO WC                 |
 |---------------|----------------------|----------------------|----------------------|----------------------|--------------------------|------------------------|------------------------|
 | Input Switch  | $\mathbf{5.3 \pm 0.0}$ | $5.6 \pm 0.0$        | $4.9\text{E+}3 \pm 0.0$ | $4.9\text{E+}3 \pm 0.0$ | $7.3\text{E+}3 \pm 8.9$  | $11.8 \pm 0.1$         | $\mathbf{5.3 \pm 0.3}$  |
-| Hospital      | $\mathbf{4.4\text{E+}2 \pm 0.0}$ | $\mathbf{4.4\text{E+}2 \pm 0.0}$ | $\mathbf{4.4\text{E+}2 \pm 0.0}$ | $1.5\text{E+}3 \pm 0
+| Hospital      | $\mathbf{4.4\text{E+}2 \pm 0.0}$ | $\mathbf{4.4\text{E+}2 \pm 0.0}$ | $\mathbf{4.4\text{E+}2 \pm 0.0}$ | $1.5\text{E+}3 \pm 0.0$ | $2.4\text{E+}4 \pm 6.6$ | $2.5\text{E+}4 \pm 7.0$ | $2.3\text{E+}4 \pm 7.4$ |
