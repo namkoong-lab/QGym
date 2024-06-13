@@ -90,6 +90,8 @@ To define the exact logic of the policy, use file `policies/<policy>.py`. Each o
 
 Each class includes mandatory `test_forward` that takes in observations and return queue-server priority matrix. Optionally, it can include `train_forward` for training the policy.
 
+We provide the code for policies we benchmarked in our paper in `polices` directory.
+
 
 ## Defining Arrival and Service Patterns
 
