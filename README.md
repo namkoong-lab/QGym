@@ -3,6 +3,20 @@
 ![Teaser Image](assets/teaser_even_larger_font.svg)
 
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Highlights of QGym](#highlights-of-qgym)
+- [File Structure](#file-structure)
+- [Tutorial](#tutorial)
+  - [Running an Experiment](#running-an-experiment)
+  - [Defining an Experiment](#defining-an-experiment)
+  - [Defining a Queueing Network](#defining-a-queueing-network)
+  - [Defining a Queueing Policy](#defining-a-queueing-policy)
+  - [Defining Arrival and Service Patterns](#defining-arrival-and-service-patterns)
+- [Use as OpenAI Gym Environment](#use-as-openai-gym-environment)
+- [Benchmarking Results](#benchmarking-results)
+
 ## Overview
 QGym is an open-source simulation framework designed to benchmark queuing policies across diverse and realistic problem instances. The framework supports a wide range of environments including parallel servers, criss-cross, tandem, and re-entrant networks. It provides a platform for comparing both model-free RL methods and classical queuing policies.
 
@@ -20,7 +34,7 @@ QGym is an open-source simulation framework designed to benchmark queuing polici
 # File Structure
 
 - `main`
-    - `run_experiments.py`: Runs a batch of experiments configured in `configs/experiments`. See [Running Experiments](#running-experiments) for details.
+    - `run_experiments.py`: Runs a batch of experiments configured in `configs/experiments`. See [Running Experiments](#running-an-experiment) for details.
     - `trainer.py`: Defines the Trainer class, which is a collection of methods for training and evaluating models.
     - `env.py` Simulator code with OpenAI Gym interface
 - `configs`
@@ -60,7 +74,7 @@ experiment_name: 'reentrant_5_cmuq'
 
 Further description of each field:
 - `env`: refers to the file located under `configs/env`. Use tihs file to define parameters for queuing network. See section [Defining a Queueing Network](#defining-a-queueing-network) for more details.
-- `model`:  refers to the file located under `configs/model`. Use this file to define parameters for routing policy. See section [Defining a Queueing Policy](#defining-a-queuing-policy) for more details.
+- `model`:  refers to the file located under `configs/model`. Use this file to define parameters for routing policy. See section [Defining a Queueing Policy](#defining-a-queueing-policy) for more details.
 - `script`: refers to the file located under `configs/scripts`. Use this file to (1) define arrival and service patterns as functions of time and using parameters specified in `env` file; (2) Specify which policy class to use and create policy using parameters specified in `model` file; (3) train and evaluate the policy and output loss log under `logs/{experiment_name}`.
 
 ## Defining a Queueing Network
@@ -112,6 +126,111 @@ draw_inter_arrivals(self, time)
 
 return interarrivals
 ```
+
+
+# Use as OpenAI Gym Environment
+
+User can also write customized experiment code using only our environment as an OpenAI Gym Envrionment using `DiffDiscreteEventSystem` class in `main/env.py`. User can interact with this environment with `reset` and `step` method as other OpenAI Gym environments.
+
+Below is detailed documentation of `DiffDiscreteEventSystem` class and other helper classes in `main/env.py`.
+
+### `DiffDiscreteEventSystem(gym.Env)`
+
+#### Parameters:
+- `network` (torch.Tensor): The network topology.
+- `mu` (torch.Tensor): Service rates for each server.
+- `h` (float): Holding cost per unit time for jobs in queues.
+- `draw_service` (callable): Function to draw service times for jobs in the queues.
+  - **Input:**
+    - `time` (torch.Tensor): Current simulation time, shape (batch_size, 1).
+  - **Output:**
+    - `torch.Tensor`: Drawn service times, shape (batch_size, 1, num_queues).
+    Each element represents the service time for a new job in the corresponding queue.
+
+- `draw_inter_arrivals` (callable): Function to draw inter-arrival times for each queue.
+  - **Input:**
+    - `time` (torch.Tensor): Current simulation time, shape (batch_size, 1).
+  - **Output:**
+    - `torch.Tensor`: Drawn inter-arrival times, shape (batch_size, num_queues).
+    Each element represents the time until the next arrival for the corresponding queue.
+- `init_time` (float, optional): Initial simulation time. Default is 0.
+- `batch` (int, optional): Batch size for parallel simulations. Default is 1.
+- `queue_event_options` (torch.Tensor, optional): Custom queue event options.
+- `straight_through_min` (bool, optional): Use straight-through estimator for min operation. Default is False.
+- `queue_lim` (int, optional): Maximum queue length.
+- `temp` (float, optional): Temperature for Gumbel-Softmax. Default is 1.
+- `seed` (int, optional): Random seed. Default is 3003.
+- `device` (str, optional): Device to run computations on. Default is "cpu".
+- `f_hook` (bool, optional): Enable hooks for debugging. Default is False.
+- `f_verbose` (bool, optional): Enable verbose output. Default is False.
+
+#### Methods:
+
+##### `reset(init_queues=None, time=None, seed=None)`
+Reset the environment to its initial state.
+
+- **Parameters:**
+  - `init_queues` (torch.Tensor, optional): Initial queue lengths. If None, all queues start empty.
+  - `time` (torch.Tensor, optional): Initial simulation time. If None, starts at 0.
+  - `seed` (int, optional): Random seed for reproducibility.
+
+- **Returns:**
+  - `Obs`: An Obs namedtuple containing:
+    - `queues` (torch.Tensor): Initial queue lengths.
+    - `time` (torch.Tensor): Initial simulation time.
+  - `EnvState`: An EnvState namedtuple containing:
+    - `queues` (torch.Tensor): Initial queue lengths.
+    - `time` (torch.Tensor): Initial simulation time.
+    - `service_times` (list of lists): Initial service times for each job in each queue.
+    - `arrival_times` (torch.Tensor): Initial time until next arrival for each queue.
+
+##### `step(action)`
+Perform one step of the simulation given an action.
+
+- **Parameters:**
+  - `action` (torch.Tensor): The action to take, representing the allocation of servers to queues.
+
+- **Returns:**
+  - `queues` (torch.Tensor): Updated queue lengths after the step.
+  - `reward` (torch.Tensor): Negative of the cost incurred during this step.
+  - `done` (bool): Whether the episode has ended (always False in this implementation).
+  - `truncated` (bool): Whether the episode was truncated (always False in this implementation).
+  - `info` (dict): Additional information about the step, containing:
+    - `obs` (Obs): Current observation after the step.
+    - `state` (EnvState): Full environment state after the step.
+    - `cost` (torch.Tensor): Cost incurred during this step.
+    - `event_time` (torch.Tensor): Time elapsed during this step.
+    - `queues` (torch.Tensor): Current queue lengths after the step.
+
+##### `get_observation()`
+Get the current observation of the system state.
+
+- **Returns:**
+  - `torch.Tensor`: Current queue lengths.
+
+##### `print_state()`
+Print the current state of the system.
+
+- **Prints:**
+  - Total accumulated cost
+  - Total time elapsed
+  - Current queue lengths
+  - Remaining service times for jobs in each queue
+  - Time until next arrival for each queue
+
+## Usage
+
+To use this simulator, create an instance of `DiffDiscreteEventSystem` with appropriate parameters, then use the `reset()` method to initialize the environment and `step(action)` to simulate the system over time.
+
+Example:
+```python
+env = DiffDiscreteEventSystem(network, mu, h, draw_service, draw_inter_arrivals)
+obs, state = env.reset()
+for _ in range(num_steps):
+    action = policy(obs)
+    obs, reward, done, truncated, info = env.step(action)
+```
+
 
 ## Benchmarking Results
 We show current benchmarking results below
