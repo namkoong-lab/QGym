@@ -34,7 +34,7 @@ QGym is an open-source simulation framework designed to benchmark queuing polici
 
 # Tutorial
 
-## Running Experiments
+## Running an Experiment
 In the `main` directory, run the `run_experiments.py` script with the `-exp_dir` argument set to the name of the subdirectory in `configs/experiments` containing the desired experiment YAML files.
 
 For example, to run all experiments in the `reentrant_5` subdirectory, run:
@@ -45,7 +45,7 @@ python main/run_experiments.py -exp_dir=reentrant_5
 
 Each experiment YAML file will result in a loss json file in `logs/<experiment_name>`.
 
-## Experiment Configuration
+## Defining an Experiment
 
 Experiments are configured using YAML files located in the `configs/experiments` directory. Each experiment has its own subdirectory containing one or more YAML files specifying the environment, model, and script to run.
 
