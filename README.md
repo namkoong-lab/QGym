@@ -65,7 +65,7 @@ Further description of each field:
 
 ## Defining a Queueing Network
 
-The queueing network is defined in the `configs/env` directory. Each YAML file contains the following keys:
+Parameters for a queueing network is defined in a file under the `configs/env` directory. Each YAML file contains the following keys:
 - `network`: Defines the network topology.
 - `mu`: Defines the arrival rate.
 - `lam_params`: Defines the arrival parameters.
@@ -85,7 +85,7 @@ We also provide configuration files of all systems we benchmarked in our paper i
 
 ## Defining a Queueing Policy
 
-The queueing policy is defined in the `configs/model` directory. Each YAML file contains the following important hyperparameters:
+Parameters for a queueing policy is defined in a file under `configs/model` directory. Each YAML file contains the following important hyperparameters:
 - `test_batch_size`: The batch size for the test set.
 - `num_epochs`: The number of epochs to train the policy.
 - `test_policy`, `train_policy`: Assignment algorithm. Supported options are `linear_assignment`, `sinkhorn`, and `softmax`.
