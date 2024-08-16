@@ -57,6 +57,11 @@ script: 'fixed_arrival_rate_cmuq.py'
 experiment_name: 'reentrant_5_cmuq'
 ```
 
+Further description of each field:
+- `env`: refers to the file located under `configs/env`. Use tihs file to define parameters for queuing network. See section [Defining a Queueing Network](#defining-a-queueing-network) for more details.
+- `model`:  refers to the file located under `configs/model`. Use this file to define parameters for routing policy. See section [Defining a Queueing Policy](#defining-a-queuing-policy) for more details.
+- `script`: refers to the file located under `configs/scripts`. Use this file to (1) define arrival and service patterns as functions of time and using parameters specified in `env` file; (2) Specify which policy class to use and create policy using parameters specified in `model` file; (3) train and evaluate the policy and output loss log under `logs/{experiment_name}`.
+
 ## Defining a Queueing Network
 
 The queueing network is defined in the `configs/env` directory. Each YAML file contains the following keys:
@@ -69,7 +74,7 @@ The queueing network is defined in the `configs/env` directory. Each YAML file c
 - `train_T`, `test_T`: step number of each simulation trajectory.
 - `init_queues`: Initial queue lengths
 
-The figure below shows an intuitive illustration of ingredients of a queueing network.
+The figure below shows an intuitive illustration of ingredients of a queueing network and example parameters for criss-cross network.
 
 ![ingredients_even_larger_font-1](assets/ingredients_even_larger_font-1.svg)
 
