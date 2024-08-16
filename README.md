@@ -17,7 +17,7 @@ QGym is an open-source simulation framework designed to benchmark queuing polici
 
 <br/>
 
-## File Structure
+# File Structure
 
 - `main`
     - `run_experiments.py`: Runs a batch of experiments configured in `configs/experiments`. See [Running Experiments](#running-experiments) for details.
@@ -32,6 +32,7 @@ QGym is an open-source simulation framework designed to benchmark queuing polici
 - `policies`: Contains queueing policy implementations
 - `utils`: Contains utility functions for routing and plotting.
 
+# Tutorial
 
 ## Running Experiments
 In the `main` directory, run the `run_experiments.py` script with the `-exp_dir` argument set to the name of the subdirectory in `configs/experiments` containing the desired experiment YAML files.
