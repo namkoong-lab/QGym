@@ -76,7 +76,7 @@ for _ in range(num_steps):
 See details in how to define each parameter for a queue system in section [Defining a Queueing Network](#defining-a-queueing-network)
 
 
-### API Reference for `DiffDiscreteEventSystem(gym.Env)`
+## API Reference for `DiffDiscreteEventSystem(gym.Env)`
 
 #### Parameters:
 - `network` (torch.Tensor): The network topology.
