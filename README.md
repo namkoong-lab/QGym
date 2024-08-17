@@ -1,20 +1,27 @@
 # QGym: Scalable Simulation and Benchmarking of Queuing Network Controllers
+<a target="_blank" style="display: inline-block; vertical-align: middle" href="https://colab.research.google.com/drive/157MJ0AtqokMA8tOrOkJintQTQWMf26Je?usp=sharing">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 ![Teaser Image](assets/teaser_even_larger_font.svg)
 
 
 ## Table of Contents
-
 - [Overview](#overview)
 - [Highlights of QGym](#highlights-of-qgym)
 - [File Structure](#file-structure)
-- [Tutorial](#tutorial)
+- [Use as an OpenAI Gym Environment](#use-as-an-openai-gym-environment)
+  - [Usage](#usage)
+  - [API Reference for `DiffDiscreteEventSystem(gym.Env)`](#api-reference-for-diffdiscreteeventsystemgymenv)
+    - [Parameters](#parameters)
+    - [Methods](#methods)
+- [How to Run Experiments](#how-to-run-experiments)
   - [Running an Experiment](#running-an-experiment)
   - [Defining an Experiment](#defining-an-experiment)
   - [Defining a Queueing Network](#defining-a-queueing-network)
-  - [Defining a Queueing Policy](#defining-a-queueing-policy)
   - [Defining Arrival and Service Patterns](#defining-arrival-and-service-patterns)
-- [Use as OpenAI Gym Environment](#use-as-openai-gym-environment)
+  - [Defining a Queueing Policy](#defining-a-queueing-policy)
+  - [Defining Training/Testing Hyperparameters](#defining-trainingtesting-hyperparameters)
 - [Benchmarking Results](#benchmarking-results)
 
 ## Overview
@@ -46,95 +53,30 @@ QGym is an open-source simulation framework designed to benchmark queuing polici
 - `policies`: Contains queueing policy implementations
 - `utils`: Contains utility functions for routing and plotting.
 
-# Tutorial
 
-## Running an Experiment
-In the `main` directory, run the `run_experiments.py` script with the `-exp_dir` argument set to the name of the subdirectory in `configs/experiments` containing the desired experiment YAML files.
+# Use as an OpenAI Gym Environment
 
-For example, to run all experiments in the `reentrant_5` subdirectory, run:
-
-```bash
-python main/run_experiments.py -exp_dir=reentrant_5
-```
-
-Each experiment YAML file will result in a loss json file in `logs/<experiment_name>`.
-
-## Defining an Experiment
-
-Experiments are configured using YAML files located in the `configs/experiments` directory. Each experiment has its own subdirectory containing one or more YAML files specifying the environment, model, and script to run.
-
-An example experiment YAML file:
-
-```yaml
-env: 'reentrant_5.yaml'
-model: 'ppg_linearassignment.yaml'
-script: 'fixed_arrival_rate_cmuq.py'
-experiment_name: 'reentrant_5_cmuq'
-```
-
-Further description of each field:
-- `env`: refers to the file located under `configs/env`. Use tihs file to define parameters for queuing network. See section [Defining a Queueing Network](#defining-a-queueing-network) for more details.
-- `model`:  refers to the file located under `configs/model`. Use this file to define parameters for routing policy. See section [Defining a Queueing Policy](#defining-a-queueing-policy) for more details.
-- `script`: refers to the file located under `configs/scripts`. Use this file to (1) define arrival and service patterns as functions of time and using parameters specified in `env` file; (2) Specify which policy class to use and create policy using parameters specified in `model` file; (3) train and evaluate the policy and output loss log under `logs/{experiment_name}`.
-
-## Defining a Queueing Network
-
-Parameters for a queueing network is defined in a file under the `configs/env` directory. Each YAML file contains the following keys:
-- `network`: Defines the network topology.
-- `mu`: Defines the arrival rate.
-- `lam_params`: Defines the arrival parameters.
-- `server_pool_size`: Defines the server pool size.
-- `h`: Defines holding cost for each queue.
-- `queue_event_options`: Define changes to each queue at each arrival or service event.
-- `train_T`, `test_T`: step number of each simulation trajectory.
-- `init_queues`: Initial queue lengths
-
-The figure below shows an intuitive illustration of ingredients of a queueing network and example parameters for criss-cross network.
-
-![ingredients_even_larger_font-1](assets/ingredients_even_larger_font-1.svg)
-
-We also provide configuration files of all systems we benchmarked in our paper in `configs/env`. Refer to the figure below for an intuitive illustration of the queueing systems we benchmarked:
-
-![systems_even_larger_font-1](assets/systems_even_larger_font-1.svg)
-
-## Defining a Queueing Policy
-
-Parameters for a queueing policy is defined in a file under `configs/model` directory. Each YAML file contains the following important hyperparameters:
-- `test_batch_size`: The batch size for the test set.
-- `num_epochs`: The number of epochs to train the policy.
-- `test_policy`, `train_policy`: Assignment algorithm. Supported options are `linear_assignment`, `sinkhorn`, and `softmax`.
-
-For static policies such as c-$\mu$ and max weight, use `ppg_linearassignment.yaml`.
-
-To define the exact logic of the policy, use file `policies/<policy>.py`. Each of policy file contains a class that implements the policy. The policy class is used in `configs/scripts/<script>.py`.
-
-Each class includes mandatory `test_forward` that takes in observations and return queue-server priority matrix. Optionally, it can include `train_forward` for training the policy.
-
-We provide the code for policies we benchmarked in our paper in `polices` directory.
-
-
-## Defining Arrival and Service Patterns
-
-The arrival and service patterns are defined in the `configs/scripts` directory.
-
-Define an arrival and service patterns as arbitrary function of time that returns time until next arrival or service for each queue.
-
-```
-draw_inter_arrivals(self, time)
-
-...
-
-return interarrivals
-```
-
-
-# Use as OpenAI Gym Environment
-
-User can also write customized experiment code using only our environment as an OpenAI Gym Envrionment using `DiffDiscreteEventSystem` class in `main/env.py`. User can interact with this environment with `reset` and `step` method as other OpenAI Gym environments.
+User can write customized experiment code using only our environment as an OpenAI Gym Envrionment using `DiffDiscreteEventSystem` class in `main/env.py`. User can interact with this environment with `reset` and `step` method as other OpenAI Gym environments.
 
 Below is detailed documentation of `DiffDiscreteEventSystem` class and other helper classes in `main/env.py`.
 
-### `DiffDiscreteEventSystem(gym.Env)`
+## Usage
+
+To use this simulator, create an instance of `DiffDiscreteEventSystem` with appropriate parameters, then use the `reset()` method to initialize the environment and `step(action)` to simulate the system over time.
+
+Example:
+```python
+env = DiffDiscreteEventSystem(network, mu, h, draw_service, draw_inter_arrivals)
+obs, state = env.reset()
+for _ in range(num_steps):
+    action = policy(obs)
+    obs, reward, done, truncated, info = env.step(action)
+```
+
+See details in how to define each parameter for a queue system in section [Defining a Queueing Network](#defining-a-queueing-network)
+
+
+### API Reference for `DiffDiscreteEventSystem(gym.Env)`
 
 #### Parameters:
 - `network` (torch.Tensor): The network topology.
@@ -218,21 +160,100 @@ Print the current state of the system.
   - Remaining service times for jobs in each queue
   - Time until next arrival for each queue
 
-## Usage
 
-To use this simulator, create an instance of `DiffDiscreteEventSystem` with appropriate parameters, then use the `reset()` method to initialize the environment and `step(action)` to simulate the system over time.
+# How to Run Experiments
+<a target="_blank" style="display: inline-block; vertical-align: middle" href="https://colab.research.google.com/drive/157MJ0AtqokMA8tOrOkJintQTQWMf26Je?usp=sharing">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
-Example:
-```python
-env = DiffDiscreteEventSystem(network, mu, h, draw_service, draw_inter_arrivals)
-obs, state = env.reset()
-for _ in range(num_steps):
-    action = policy(obs)
-    obs, reward, done, truncated, info = env.step(action)
+In addition to the Gym environment for queueing system, we provide interface for easy configuration of queuing systems, policies, training and testing procedure. Users can easily create and run training/testing experiments and view results. We provide a demo in this [Colab notebook](https://colab.research.google.com/drive/157MJ0AtqokMA8tOrOkJintQTQWMf26Je?usp=sharing). We detail each step in configuring an experiment below:
+
+## Running an Experiment
+In the `main` directory, run the `run_experiments.py` script with the `-exp_dir` argument set to the name of the subdirectory in `configs/experiments` containing the desired experiment YAML files.
+
+For example, to run all experiments in the `reentrant_5` subdirectory, run:
+
+```bash
+python main/run_experiments.py -exp_dir=reentrant_5
+```
+
+Each experiment YAML file will result in a loss json file in `logs/<experiment_name>`.
+
+## Defining an Experiment
+
+Experiments are configured using YAML files located in the `configs/experiments` directory. Each experiment has its own subdirectory containing one or more YAML files specifying the environment, model, and script to run.
+
+An example experiment YAML file:
+
+```yaml
+env: 'reentrant_5.yaml'
+model: 'ppg_linearassignment.yaml'
+script: 'fixed_arrival_rate_cmuq.py'
+experiment_name: 'reentrant_5_cmuq'
+```
+
+Further description of each field:
+- `env`: refers to the file located under `configs/env`. Use tihs file to define parameters for queuing network. See section [Defining a Queueing Network](#defining-a-queueing-network) for more details.
+- `model`:  refers to the file located under `configs/model`. Use this file to define parameters for routing policy. See section [Defining a Queueing Policy](#defining-a-queueing-policy) for more details.
+- `script`: refers to the file located under `configs/scripts`. Use this file to (1) define arrival and service patterns as functions of time and using parameters specified in `env` file; (2) Specify which policy class to use and create policy using parameters specified in `model` file; (3) train and evaluate the policy and output loss log under `logs/{experiment_name}`.
+
+## Defining a Queueing Network
+
+Parameters for a queueing network is defined in a file under the `configs/env` directory. Each YAML file contains the following keys:
+- `network`: Defines the network topology.
+- `mu`: Defines the arrival rate.
+- `lam_params`: Defines the arrival parameters.
+- `server_pool_size`: Defines the server pool size.
+- `h`: Defines holding cost for each queue.
+- `queue_event_options`: Define changes to each queue at each arrival or service event.
+- `train_T`, `test_T`: step number of each simulation trajectory.
+- `init_queues`: Initial queue lengths
+
+The figure below shows an intuitive illustration of ingredients of a queueing network and example parameters for criss-cross network.
+
+![ingredients_even_larger_font-1](assets/ingredients_even_larger_font-1.svg)
+
+We also provide configuration files of all systems we benchmarked in our paper in `configs/env`. Refer to the figure below for an intuitive illustration of the queueing systems we benchmarked:
+
+![systems_even_larger_font-1](assets/systems_even_larger_font-1.svg)
+
+## Defining Arrival and Service Patterns
+
+The arrival and service patterns are defined in the `configs/scripts` directory.
+
+Define an arrival and service patterns as arbitrary function of time that returns time until next arrival or service for each queue.
+
+```
+draw_inter_arrivals(self, time)
+
+...
+
+return interarrivals
 ```
 
 
-## Benchmarking Results
+## Defining a Queueing Policy
+To define the exact logic of the policy, use file `policies/<policy>.py`. Each of policy file contains a class that implements the policy. The policy class is used in `configs/scripts/<script>.py`.
+
+Each class includes mandatory `test_forward` that takes in observations and return queue-server priority matrix. Optionally, it can include `train_forward` for training the policy.
+
+We provide the code for policies we benchmarked in our paper in `polices` directory.
+
+## Defining Training/Testing Hypeprarameters
+
+Parameters for a queueing policy is defined in a file under `configs/model` directory. Each YAML file contains the following important hyperparameters:
+- `test_batch_size`: The batch size for the test set.
+- `num_epochs`: The number of epochs to train the policy.
+- `test_policy`, `train_policy`: Assignment algorithm. Supported options are `linear_assignment`, `sinkhorn`, and `softmax`.
+
+For static policies such as c-$\mu$ and max weight, use `ppg_linearassignment.yaml`.
+
+
+
+
+
+
+# Benchmarking Results
 We show current benchmarking results below
 
 ### Criss-cross
