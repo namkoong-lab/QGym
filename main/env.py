@@ -83,7 +83,7 @@ class DiffDiscreteEventSystem(gym.Env):
     def __init__(self, network, mu, h, draw_service, draw_inter_arrivals, init_time = 0, batch = 1, queue_event_options = None,
                  straight_through_min = False,
                  queue_lim = None, temp = 1, seed = 3003,
-                 device = "cpu", f_hook = False, f_verbose = False, reset = False):
+                 device = "cpu", f_hook = False, f_verbose = False, reset = False, use_sb = False):
         
 
         self.device = device
@@ -102,6 +102,7 @@ class DiffDiscreteEventSystem(gym.Env):
 
         self.eps = 1e-8
         self.inv_eps = 1/self.eps
+        self.use_sb = use_sb
         
         if queue_event_options is None:
             self.queue_event_options = torch.cat((F.one_hot(torch.arange(0,self.q)), -F.one_hot(torch.arange(0,self.q)))).float().to(self.device)
@@ -135,7 +136,7 @@ class DiffDiscreteEventSystem(gym.Env):
         return self.draw_inter_arrivals_core(self, time)
     
         
-    def reset(self, init_queues=None, time=None, seed = None):
+    def reset(self, init_queues=None, time=None, seed = None, options:dict = None):
         #self.episode += 1
         cost = torch.tensor([0]).to(self.device)
         if time is None:
@@ -169,13 +170,18 @@ class DiffDiscreteEventSystem(gym.Env):
         queues, time, service_times, arrival_times = state 
         # print(arrival_times)  
         # print(queues)    
-        
+        ###TODO Changed
+        if self.use_sb:
+            action = torch.tensor(action).float().to(self.device)
+            
         action = action * self.network
         
 
         # action is zero if queues are zero
         #if self.f_preemptive:
-        action = torch.minimum(action, queues)
+        ###TODO Changed
+        # action = torch.minimum(action, queues)
+        action = torch.minimum(action, queues.unsqueeze(1).repeat(1,self.s,1))
 
         # work is action times mu
 

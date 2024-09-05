@@ -52,6 +52,15 @@ QGym is an open-source simulation framework designed to benchmark queuing polici
 - `logs`: Contains loss and switchplot logging for experiments
 - `policies`: Contains queueing policy implementations
 - `utils`: Contains utility functions for routing and plotting.
+- `RL`: Contains the PPO and its variant baselines used in the benchmark. 
+    - `policies`: Contains various PPO policies, including 'WC' and 'Vanilla'
+    - `PPO`: Contains the implementation of PPO algorithm 
+        - `trainer.py`: PPO trainer
+        - `train.py`: Main script for launching PPO experiments.
+    - `utils`: 
+        - `rl_env.py`: Wrapper for the queueing environment to make it compatible with RL algorithms
+        - `eval.py`: Evaluation utilities for RL models
+    - `policy_configs`: Contains YAML configuration files for different RL policies
 
 
 # Use as an OpenAI Gym Environment
@@ -177,7 +186,29 @@ For example, to run all experiments in the `reentrant_5` subdirectory, run:
 python main/run_experiments.py -exp_dir=reentrant_5
 ```
 
-Each experiment YAML file will result in a loss json file in `logs/<experiment_name>`.
+## Running a RL experiment
+
+To run a reinforcement learning experiment, use the following command in the `RL/PPO` directory:
+
+```bash
+python train.py <policy-config-name> <queue-env-name>
+```
+
+Specifically, you can choose from three policy configs:
+
+1. `WC.yaml`: Work-conserving policy
+2. `vanilla.yaml`: Vanilla policy
+3. `discrete.yaml`: Discrete action space policy
+
+These policy config files are located in the `QGym/RL/policy_configs` directory. For the queue environment name, use the name of the YAML file (without the .yaml extension) from the `QGym/configs/env` directory that defines your desired queueing network.
+
+For example, to train a work-conserving policy on the reentrant line with 2 stations, you would run:
+
+```bash
+python train.py WC reentrant_2
+```
+
+To simulate different environments, such as defining different service and arrival functions, you can go to `QGym/RL/utils/rl_env.py` and change your custom functions in `load_rl_p_env`.
 
 ## Defining an Experiment
 
