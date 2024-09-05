@@ -7,22 +7,20 @@
 
 
 ## Table of Contents
-- [Overview](#overview)
-- [Highlights of QGym](#highlights-of-qgym)
 - [File Structure](#file-structure)
 - [Use as an OpenAI Gym Environment](#use-as-an-openai-gym-environment)
-  - [Usage](#usage)
-  - [API Reference for `DiffDiscreteEventSystem(gym.Env)`](#api-reference-for-diffdiscreteeventsystemgymenv)
-    - [Parameters](#parameters)
-    - [Methods](#methods)
+  * [Usage](#usage)
+  * [API Reference for `DiffDiscreteEventSystem(gym.Env)`](#api-reference-for--diffdiscreteeventsystem-gymenv--)
 - [How to Run Experiments](#how-to-run-experiments)
-  - [Running an Experiment](#running-an-experiment)
-  - [Defining an Experiment](#defining-an-experiment)
-  - [Defining a Queueing Network](#defining-a-queueing-network)
-  - [Defining Arrival and Service Patterns](#defining-arrival-and-service-patterns)
-  - [Defining a Queueing Policy](#defining-a-queueing-policy)
-  - [Defining Training/Testing Hyperparameters](#defining-trainingtesting-hyperparameters)
+  * [Running an Experiment](#running-an-experiment)
+  * [Defining an Experiment](#defining-an-experiment)
+  * [Defining a Queueing Network](#defining-a-queueing-network)
+  * [Defining Arrival and Service Patterns](#defining-arrival-and-service-patterns)
+  * [Defining a Queueing Policy](#defining-a-queueing-policy)
+  * [Defining Training/Testing Hypeprarameters](#defining-training-testing-hypeprarameters)
+  * [Running a RL experiment](#running-a-rl-experiment)
 - [Benchmarking Results](#benchmarking-results)
+
 
 ## Overview
 QGym is an open-source simulation framework designed to benchmark queuing policies across diverse and realistic problem instances. The framework supports a wide range of environments including parallel servers, criss-cross, tandem, and re-entrant networks. It provides a platform for comparing both model-free RL methods and classical queuing policies.
