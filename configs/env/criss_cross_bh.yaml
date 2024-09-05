@@ -12,7 +12,7 @@ queue_event_options: [[1., 0, 0.],
                       [0., -1., 0.],
                       [0., 0., -1.],]
 train_T: 20000
-test_T: 50000
+test_T: 10000
 num_pool: 1
 
   

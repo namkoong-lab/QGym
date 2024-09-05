@@ -1,0 +1,50 @@
+name: 'PPO'
+env:
+  device: 'cpu'
+  env_temp: 1.0
+  straight_through_min: False
+  model_seed: 100
+  test_seed: 42
+  train_seed: 3003
+  randomize: True 
+  time_f: False 
+  reward_scale: 1.0 
+model: 
+  policy_name: "vanilla"
+  scale: 20 
+training:   
+  behavior_cloning: True
+  normalize_advantage: True
+  normalize_value: True
+  normalize_reward: True
+  rescale_v: True
+  truncation: True
+  amp_value: False
+  var_scaler: 1.0
+  per_iter_normal_obs: False
+  per_iter_normal_value: False
+  actors: 50
+  episode_steps: 50000
+  num_epochs: 100 
+  train_batch: 1
+  test_batch: 100
+  lr: 0.0003 
+  lr_policy: 0.0009
+  lr_value: 0.0003
+  min_lr_policy: 0.00001 
+  min_lr_value: 0.00001 
+  gae_lambda: 0.99 
+  gamma: 0.998 
+  target_kl: 0.03
+  vf_coef: 1.0 
+  batch_size: 2500 
+  ppo_epochs: 3 
+  clip_range_vf: null 
+  ent_coef: 0.0  
+policy: 
+  test_policy: 'vanilla' 
+plot: 
+  plot_policy_curve: True 
+  inds: [0,1] 
+  val_inds: [0, 0] 
+checkpoint: null 
