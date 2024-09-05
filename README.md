@@ -254,7 +254,7 @@ Parameters for a queueing policy is defined in a file under `configs/model` dire
 For static policies such as c-$\mu$ and max weight, use `ppg_linearassignment.yaml`.
 
 
-## Running a RL experiment
+## Running RL training and evaluation
 
 We provide codebase to train and evaluate several RL baselines. To run a reinforcement learning experiment, use the following command in the `RL/PPO` directory:
 
