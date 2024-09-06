@@ -105,7 +105,7 @@ def lam(t, rng = None, batch = None):
                 lam_r = lam_r.reshape((1,len(lam_r))).repeat(batch, axis = 0)
                 switch = rng.binomial(1, p, (batch, 1))
                 return switch * (lam_r / (1 + scale)) + (1 - switch) * (lam_r / (1 - scale))
-        f = lambda rng, t, batch: lam_f(rng, t, batch, p = 0.5, lam_r = lam_r, scale = scale)
+        f = lambda rng, t, batch, p, lam_r, scale: lam_f(rng, t, batch, p = 0.5, lam_r = lam_r, scale = scale)
         lam = f(rng, t, batch, p=0.5, lam_r = lam_r, scale = scale)
     else:
         return 'Nonvalid arrival rate'
@@ -123,6 +123,12 @@ if type(env_config['queue_event_options']) == list:
 
 def draw_service(self, time):
     def service_dists(state, batch, t):
+        if "service_type" in env_config.keys() and env_config['service_type'] == 'hyper':
+            scale = 0.8
+            coins = state.binomial(1,0.5, size = (batch, orig_q))
+            a = state.exponential((1 + scale), (batch, orig_q))
+            b = state.exponential((1 - scale), (batch, orig_q))
+            return coins * a + (1 - coins) * b
         return state.exponential(1, (batch, orig_q))
     service = torch.tensor(service_dists(self.state, self.batch, time)).to(self.device)
     return service
@@ -131,12 +137,6 @@ def draw_service(self, time):
 def draw_inter_arrivals(self, time):
 
     def inter_arrival_dists(state, batch, t):
-        if "service_type" in env_config.keys() and env_config['service_type'] == 'hyper':
-            scale = 0.8
-            coins = state.binomial(1,0.5, size = (batch, orig_q))
-            a = state.exponential((1 + scale), (batch, orig_q))
-            b = state.exponential((1 - scale), (batch, orig_q))
-            return coins * a + (1 - coins) * b
         exps = state.exponential(1, (batch, orig_q))
         lam_rate = lam(t)
         return exps / lam_rate
