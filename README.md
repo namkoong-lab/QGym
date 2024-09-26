@@ -216,7 +216,7 @@ Parameters for a queueing network is defined in a file under the `configs/env` d
 
 The figure below shows an intuitive illustration of ingredients of a queueing network and example parameters for criss-cross network.
 
-![ingredients_even_larger_font-1](assets/ingredients_even_larger_font-1.svg)
+![ingredients_even_larger_font-1](assets/criss-cross-updated.svg)
 
 We also provide configuration files of all systems we benchmarked in our paper in `configs/env`. Refer to the figure below for an intuitive illustration of the queueing systems we benchmarked:
 
