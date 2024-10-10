@@ -23,7 +23,7 @@
 
 
 ## Overview
-QGym is an open-source simulation framework designed to benchmark queuing policies across diverse and realistic problem instances. The framework supports a wide range of environments including parallel servers, criss-cross, tandem, and re-entrant networks. It provides a platform for comparing both model-free RL methods and classical queuing policies.
+QGym is an open-source simulation framework designed to benchmark queuing policies across diverse and realistic problem instances. The framework supports a wide range of environments including parallel servers, criss-cross, tandem, and re-entrant networks. It provides a platform for comparing both model-free RL methods and classical queuing policies. See more details in our [paper](https://arxiv.org/pdf/2410.06170).
 
 ## Highlights of QGym
 - **OpenAI Gym Interface**: Easy deployment of RL algorithms.
